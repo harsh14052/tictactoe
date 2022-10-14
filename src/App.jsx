@@ -8,9 +8,13 @@ const App = () => {
   const [isNext, setIsNext] = useState(false);
 
   const winner = calculateWinner(board);
-  console.log(winner);
+
+  const message = winner
+    ? `Winner is ${winner}`
+    : `Next player is ${isNext ? 'X' : 'O'} `;
+
   const handleSquarelick = position => {
-    if (board[position]) {
+    if (board[position] || winner) {
       return;
     }
 
@@ -29,7 +33,7 @@ const App = () => {
   return (
     <div className="app">
       <h1>TIC TAC TOE</h1>
-      <h2>message</h2>
+      <h2>{message}</h2>
       <Board board={board} handleSquarelick={handleSquarelick} />
     </div>
   );
